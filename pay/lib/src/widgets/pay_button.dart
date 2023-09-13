@@ -55,8 +55,9 @@ abstract class PayButton extends StatefulWidget {
   PayButton(
     Key? key,
     this.buttonProvider,
-    @Deprecated('Prefer to use [paymentConfiguration]. Take a look at the readme to see examples')
-        final String? paymentConfigurationAsset,
+    @Deprecated(
+        'Prefer to use [paymentConfiguration]. Take a look at the readme to see examples')
+    final String? paymentConfigurationAsset,
     final PaymentConfiguration? paymentConfiguration,
     this.onPaymentResult,
     this.width,
@@ -150,10 +151,13 @@ class _PayButtonState extends State<PayButton> {
               height: widget.height,
               child: widget._payButton,
             );
+            // Returning the google pay button even if Usercant pay just for local usage
           } else {
-            return ButtonPlaceholder(
+            return Container(
               margin: widget.margin,
-              child: widget.childOnError,
+              width: widget.width,
+              height: widget.height,
+              child: widget._payButton,
             );
           }
         }
